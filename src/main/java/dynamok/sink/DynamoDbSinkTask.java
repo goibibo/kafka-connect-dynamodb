@@ -24,6 +24,8 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.model.*;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.newrelic.api.agent.NewRelic;
+import com.newrelic.api.agent.Trace;
 import dynamok.Version;
 import dynamok.commons.Util;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
@@ -93,8 +95,10 @@ public class DynamoDbSinkTask extends SinkTask {
     }
 
     @Override
+    @Trace(dispatcher = true)
     public void put(Collection<SinkRecord> records) {
         if (records.isEmpty()) return;
+        NewRelic.incrementCounter("Custom/DynamoDBConnect-RecordsBatch");
 
         for (final SinkRecord record : records) {
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>(config.errorKafkaTopic,
