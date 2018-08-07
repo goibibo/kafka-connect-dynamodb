@@ -36,6 +36,11 @@ public class DynamoDbSinkConnector extends SinkConnector {
 
     @Override
     public void start(Map<String, String> props) {
+        /*
+        Taking parameters from either environment variables or java system properties.
+        In the configuration files env variable names are passed as ${Variable_name} format instead of the original value
+        and the variable value are fetched from environment.
+         */
         for(Map.Entry<String, String> entry : props.entrySet()){
             if(entry.getValue().startsWith("${") && entry.getValue().endsWith("}")){
                 String variable = entry.getValue().replace("${","").replace("}","");
