@@ -36,6 +36,19 @@ public class DynamoDbSinkConnector extends SinkConnector {
 
     @Override
     public void start(Map<String, String> props) {
+        for(Map.Entry<String, String> entry : props.entrySet()){
+            if(entry.getValue().startsWith("${") && entry.getValue().endsWith("}")){
+                String variable = entry.getValue().replace("${","").replace("}","");
+                if(System.getenv().containsKey(variable)){
+                    String newValue = System.getenv(variable);
+                    entry.setValue(newValue);
+                }
+                else if (System.getProperties().containsKey(variable)){
+                    String newValue = System.getProperty(variable);
+                    entry.setValue(newValue);
+                }
+            }
+        }
         this.props = props;
     }
 
