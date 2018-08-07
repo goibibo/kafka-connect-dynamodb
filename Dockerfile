@@ -31,4 +31,4 @@ ADD ./dynamo-connect/ ./dynamo-connect/
 ADD ./target/ ./target/
 
 ENV CLASSPATH=/usr/local/goibibo/source/kafka-connect-dynamodb/target/*
-CMD ["connect-standalone.sh", "/usr/local/goibibo/source/kafka-connect-dynamodb/dynamo-connect/connect-standalone.properties", "/usr/local/goibibo/source/kafka-connect-dynamodb/dynamo-connect/dynamo-sink.properties" ]
+CMD ["connect-standalone.sh", "dynamo-connect/connect-standalone.properties", "dynamo-connect/dynamo-sink.properties" ]
