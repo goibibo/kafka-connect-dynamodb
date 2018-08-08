@@ -7,7 +7,7 @@ envsubst < ./newrelic/newrelic.yml.template > ./newrelic/newrelic.yml
 CMD=${1:-"exit 0"}
 if [[ "xxx$CMD" == "xxx" ]]
 then
-    exec connect-standalone.sh ./connect-properties/connect-standalone.properties ./connect-properties/sink.properties
+    exec /opt/kafka_2.11-0.11.0.0/bin/connect-standalone.sh ./connect-properties/connect-standalone.properties ./connect-properties/sink.properties
 else
     /bin/bash -c "$*"
 fi
