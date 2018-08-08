@@ -1,0 +1,10 @@
+name=${KCD_NAME}
+topics=${KCD_TOPIC}
+connector.class=dynamok.sink.DynamoDbSinkConnector
+region=ap-south-1
+ignore.record.key=true
+batch.size=1
+table.format=${KCD_TABLE_NAME}
+kafka.attributes=
+broker=${BROKER}
+error.kafka.topic=${KCD_ERROR_KAFKA_TOPIC}

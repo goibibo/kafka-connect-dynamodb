@@ -7,10 +7,10 @@ ENV JAVA_UPDATE 181
 ENV JAVA_BUILD 13
 ENV JAVA_SIG 96a7b8442fe848ef90c96a2fad6ed6d1
 ENV SCALA_VERSION 2.11
-ENV KAFKA_VERSION 0.10.1.0
+ENV KAFKA_VERSION 0.11.0.0
 
 WORKDIR /opt
-RUN yum install -y wget netstat telnet tar git glibc.i686 unzip && \
+RUN yum install -y wget netstat telnet tar git glibc.i686 unzip gettext && \
     wget --no-cookies --header "Cookie:oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/"${JAVA_VERSION}"u"${JAVA_UPDATE}"-b"${JAVA_BUILD}"/"${JAVA_SIG}"/jdk-"${JAVA_VERSION}"u"${JAVA_UPDATE}"-linux-x64.tar.gz && \
     tar -xf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz && \
     wget https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
@@ -27,8 +27,11 @@ RUN wget -N https://download.newrelic.com/newrelic/java-agent/newrelic-agent/cur
         unzip newrelic-java.zip
 
 ADD ./newrelic/* ./newrelic/
-ADD ./dynamo-connect/ ./dynamo-connect/
-ADD ./target/ ./target/
+ADD ./connect-properties ./connect-properties/
+ADD ./distribution ./distribution/
 
-ENV CLASSPATH=/usr/local/goibibo/source/kafka-connect-dynamodb/target/*
-CMD ["connect-standalone.sh", "dynamo-connect/connect-standalone.properties", "dynamo-connect/dynamo-sink.properties" ]
+ENV CLASSPATH=./distribution/*
+ENV KAFKA_OPTS=-javaagent:./newrelic/newrelic.jar
+
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["connect-standalone.sh", "./connect-properties/connect-standalone.properties", "./connect-properties/sink.properties" ]
