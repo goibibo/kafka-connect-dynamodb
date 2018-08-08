@@ -29,9 +29,11 @@ RUN wget -N https://download.newrelic.com/newrelic/java-agent/newrelic-agent/cur
 ADD ./newrelic/* ./newrelic/
 ADD ./connect-properties ./connect-properties/
 ADD ./distribution ./distribution/
+ADD ./entrypoint.sh ./
+RUN chown root.root ./entrypoint.sh
+RUN chmod 700 ./entrypoint.sh
 
 ENV CLASSPATH=./distribution/*
 ENV KAFKA_OPTS=-javaagent:./newrelic/newrelic.jar
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["connect-standalone.sh", "./connect-properties/connect-standalone.properties", "./connect-properties/sink.properties" ]
