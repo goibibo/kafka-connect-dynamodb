@@ -7,7 +7,7 @@ ENV JAVA_UPDATE 181
 ENV JAVA_BUILD 13
 ENV JAVA_SIG 96a7b8442fe848ef90c96a2fad6ed6d1
 ENV SCALA_VERSION 2.11
-ENV KAFKA_VERSION 0.11.0.0
+ENV KAFKA_VERSION 0.10.1.0
 
 WORKDIR /opt
 RUN yum install -y wget netstat telnet tar git glibc.i686 unzip gettext && \
