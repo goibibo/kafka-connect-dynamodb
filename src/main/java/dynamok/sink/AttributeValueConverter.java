@@ -148,18 +148,19 @@ public class AttributeValueConverter {
         }
         if (value instanceof Map) {
             final Map<?, ?> sourceMap = (Map) value;
-            if(sourceMap.isEmpty()) return null;
+            if (sourceMap.isEmpty()) return null;
             final Map<String, AttributeValue> attributesMap = new HashMap<>(sourceMap.size());
             for (Map.Entry<?, ?> e : sourceMap.entrySet()) {
                 //Ignoring null & empty strings and keys starting with __
-                if(e.getValue() != null && (!(e.getValue() instanceof String) || e.getValue() != "") &&
-                        e.getKey() != null &&(!(e.getKey() instanceof String) || !((String) e.getKey()).startsWith("__"))) {
+                if (e.getValue() != null && (!(e.getValue() instanceof String) || e.getValue() != "") &&
+                        e.getKey() != null && (!(e.getKey() instanceof String) || !((String) e.getKey()).startsWith("__"))) {
                     attributesMap.put(
                             primitiveAsString(e.getKey()),
                             toAttributeValueSchemaless(e.getValue())
                     );
                 }
             }
+            if (attributesMap.entrySet().stream().noneMatch(p -> (p.getValue() != null))) return null;
             return new AttributeValue().withM(attributesMap);
         }
         throw new DataException("Unsupported value type: " + value.getClass());
