@@ -120,6 +120,8 @@ public class AttributeValueConverter {
             return new AttributeValue().withB(toByteBuffer(value));
         }
         if (value instanceof List) {
+            if (((List) value).isEmpty())
+                return null;
             // We could have treated it as NS/BS/SS if the list is homogeneous and a compatible type, but can't know for ane empty list
             return new AttributeValue().withL(
                     ((List<?>) value).stream()
