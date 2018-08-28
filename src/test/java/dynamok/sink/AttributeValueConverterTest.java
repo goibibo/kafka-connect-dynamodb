@@ -73,7 +73,7 @@ public class AttributeValueConverterTest {
                 Arrays.asList(new AttributeValue().withN("1"), new AttributeValue().withN("2"), new AttributeValue().withN("3")),
                 attributeMap.get("list").getL()
         );
-        assertTrue(attributeMap.get("empty_set").getNULL());
+        assertTrue(attributeMap.get("empty_set") == null);
         assertEquals(Arrays.asList("a", "b", "c"), attributeMap.get("string_set").getSS());
         assertEquals(Arrays.asList("1", "2", "3"), attributeMap.get("number_set").getNS());
         assertEquals(Arrays.asList(ByteBuffer.wrap(new byte[]{42})), attributeMap.get("bytes_set").getBS());

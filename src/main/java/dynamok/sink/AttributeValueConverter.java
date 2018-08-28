@@ -105,7 +105,7 @@ public class AttributeValueConverter {
 
     public static AttributeValue toAttributeValueSchemaless(Object value) {
         if (value == null) {
-            return NULL_VALUE;
+            return null;
         }
         if (value instanceof Number) {
             return new AttributeValue().withN(value.toString());
@@ -132,7 +132,7 @@ public class AttributeValueConverter {
         if (value instanceof Set) {
             final Set<?> set = (Set) value;
             if (set.isEmpty()) {
-                return NULL_VALUE;
+                return null;
             }
             final Object firstItem = ((Iterator) set.iterator()).next();
             if (firstItem instanceof String) {
@@ -148,6 +148,7 @@ public class AttributeValueConverter {
         }
         if (value instanceof Map) {
             final Map<?, ?> sourceMap = (Map) value;
+            if(sourceMap.isEmpty()) return null;
             final Map<String, AttributeValue> attributesMap = new HashMap<>(sourceMap.size());
             for (Map.Entry<?, ?> e : sourceMap.entrySet()) {
                 //Ignoring null & empty strings and keys starting with __
