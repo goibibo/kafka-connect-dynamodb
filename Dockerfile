@@ -14,7 +14,9 @@ RUN yum install -y wget netstat telnet tar git glibc.i686 unzip gettext && \
     wget --no-cookies --header "Cookie:oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/"${JAVA_VERSION}"u"${JAVA_UPDATE}"-b"${JAVA_BUILD}"/"${JAVA_SIG}"/jdk-"${JAVA_VERSION}"u"${JAVA_UPDATE}"-linux-x64.tar.gz && \
     tar -xf jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz && \
     wget https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
-    tar -xf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+    tar -xf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
+    rm -rf /etc/localtime && \
+    ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
 ENV JAVA_HOME /opt/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}
 ENV KAFKA_HOME /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}
