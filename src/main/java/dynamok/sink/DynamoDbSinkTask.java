@@ -75,7 +75,6 @@ public class DynamoDbSinkTask extends SinkTask {
     public void start(Map<String, String> props) {
         config = new ConnectorConfig(props);
         producer = Util.getKafkaProducer(config.broker);
-
         if (config.accessKeyId.value().isEmpty() || config.secretKey.value().isEmpty()) {
             client = AmazonDynamoDBClientBuilder
                     .standard()
@@ -121,10 +120,6 @@ public class DynamoDbSinkTask extends SinkTask {
                 log.error("Exception occurred while converting JSON to Map: {}", record, e);
                 log.warn("Sending to error topic...");
                 producer.send(producerRecord);
-            } catch (LimitExceededException | ProvisionedThroughputExceededException e) {
-                log.debug("Write failed with Limit/Throughput Exceeded exception; backing off");
-                context.timeout(config.retryBackoffMs);
-                throw new RetriableException(e);
             } catch (ConditionalCheckFailedException e) {
                 log.debug("Conditional check failed for record: {}", record, e);
                 //This is intentional failure for conditional check
