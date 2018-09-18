@@ -7,7 +7,7 @@ envsubst < ./newrelic/newrelic.yml.template > ./newrelic/newrelic.yml
 if [[ "$#" -eq 0 ]]
 then
     echo "Starting Connect..."
-    exec /opt/kafka_2.11-${KAFKA_VERSION}/bin/connect-standalone.sh ./connect-properties/connect-standalone.properties ./connect-properties/sink.properties > /logs/kafka-connect-dynamodb.log 2>&1 | tail -f /logs/kafka-connect-dynamodb.log
+    exec /opt/kafka_2.11-${KAFKA_VERSION}/bin/connect-standalone.sh ./connect-properties/connect-standalone.properties ./connect-properties/sink.properties >> /logs/kafka-connect-dynamodb.log 2>&1 | tail -f /logs/kafka-connect-dynamodb.log
 else
     /bin/bash -c "$*"
 fi
