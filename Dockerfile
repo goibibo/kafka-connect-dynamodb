@@ -7,6 +7,11 @@ ENV JAVA_UPDATE 201
 ENV JAVA_BUILD 09
 ENV JAVA_SIG 42970487e3af4f5aa5bca3f542482c60
 ENV AWS_CLI_VERSION 1.15.4
+ENV SCALA_VERSION 2.11
+ENV KAFKA_VERSION 0.10.1.0
+
+
+
 
 WORKDIR /opt
 RUN yum install -y wget netstat telnet tar git glibc.i686 unzip gettext && \
