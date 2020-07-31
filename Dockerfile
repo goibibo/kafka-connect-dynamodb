@@ -12,15 +12,15 @@ ENV KAFKA_VERSION 0.10.1.0
 
 WORKDIR /opt
 RUN apk update && apk add --no-cache bash wget tar curl procps openjdk8 netcat-openbsd busybox-extras git libgcc unzip gettext && \
-        wget https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
+        wget https://archive.apache.org/dist/kafka/0.10.0.1/kafka_2.10-0.10.0.1.tgz && \
         tar -xzf kafka_2.11-0.11.0.2.tgz -C /opt/ && \
         rm -rf /etc/localtime && \
         ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
         
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
-#ENV KAFKA_HOME /opt/kafka_2.11-0.11.0.2
-ENV KAFKA_HOME /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}
+ENV KAFKA_HOME /opt/kafka_2.10-0.10.0.1
+#ENV KAFKA_HOME /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION}
 ENV PATH $PATH:$JAVA_HOME/bin $PATH:$KAFKA_HOME/bin
 
 
