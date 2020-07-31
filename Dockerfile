@@ -11,7 +11,7 @@ ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.10.1.0
 
 WORKDIR /opt
-RUN apk update && apk add --no-cache bash wget tar curl procps openjdk8 netstat telnet git glibc.i686 unzip gettext && \
+RUN apk update && apk add --no-cache bash wget tar curl procps openjdk8 netcat-openbsd busybox-extras git libgcc unzip gettext && \
         wget https://archive.apache.org/dist/kafka/0.11.0.2/kafka_2.11-0.11.0.2.tgz && \
         tar -xzf kafka_2.11-0.11.0.2.tgz -C /opt/kafka/ && \
         rm -rf /etc/localtime && \
