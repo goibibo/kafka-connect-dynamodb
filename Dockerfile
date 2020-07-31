@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM alpine:3.9.6
 
 MAINTAINER data-team
 
@@ -10,6 +10,17 @@ ENV AWS_CLI_VERSION 1.15.4
 ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.10.1.0
 
+WORKDIR /opt
+RUN apk update && apk add --no-cache bash wget tar curl procps openjdk8 netstat telnet git glibc.i686 unzip gettext && \
+        wget https://archive.apache.org/dist/kafka/0.11.0.2/kafka_2.11-0.11.0.2.tgz && \
+        tar -xzf kafka_2.11-0.11.0.2.tgz -C /opt/kafka/ && \
+        rm -rf /etc/localtime && \
+        ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+        
+
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+ENV KAFKA_HOME /opt/kafka/kafka_2.11-0.11.0.2
+ENV PATH $PATH:$JAVA_HOME/bin $PATH:$KAFKA_HOME/bin
 
 
 
