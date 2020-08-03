@@ -1,0 +1,23 @@
+{
+  "api.version": "v1",
+  "sources": [
+    {
+      "name": "kafka-connect-dynamodb-pp-app",
+      "category": "pp/eks/kafka-connect-dynamodb/common",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+
+      ],
+      "sourceType": "LocalFile"
+    }
+  ]
+}
