@@ -2,19 +2,14 @@
   "api.version": "v1",
   "sources": [
     {
-      "name": "canon-prodpp-app",
-      "category": "prodpp/eks/canon/app",
+      "name": "kafka-dynamodb-prodpp-app",
+      "category": "prodpp/eks/kafka-connect-dynamodb/app",
       "automaticDateParsing": true,
       "multilineProcessingEnabled": true,
       "useAutolineMatching": true,
       "timeZone": "Asia/Kolkata",
       "forceTimeZone": true,
       "filters": [
-       {
-          "filterType": "Include",
-          "name": "canonx",
-          "regexp": "(?s).*do-not-send.*(?s)"
-        }
       ],
       "cutoffTimestamp": 1548700200000,
       "encoding": "UTF-8",

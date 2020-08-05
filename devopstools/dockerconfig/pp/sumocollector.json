@@ -2,8 +2,8 @@
   "api.version": "v1",
   "sources": [
     {
-      "name": "canon-pp-app",
-      "category": "pp/eks/canon/app",
+      "name": "kafka-connect-dynamodb-pp",
+      "category": "pp/eks/kafka-connect-dynamodb/app",
       "automaticDateParsing": true,
       "multilineProcessingEnabled": true,
       "useAutolineMatching": true,
@@ -12,7 +12,7 @@
       "filters": [
        {
           "filterType": "Include",
-          "name": "canonx",
+          "name": "kafka-connect-dynamodb",
           "regexp": "(?s).*do-not-send.*(?s)"
         }
       ],
