@@ -1,0 +1,63 @@
+{
+  "api.version": "v1",
+  "sources": [
+
+    {
+      "name": "canon-nginx-access",
+      "category": "prod/eks/canon/nginx/access",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+        {
+          "filterType": "Include",
+          "name": "nginxaccess",
+          "regexp": "(?s).*nginx-access.*(?s)"
+        },
+        {
+          "filterType": "Exclude",
+          "name": "elb-healthcheck",
+          "regexp": "(?s).*ELB-HealthChecker.*(?s)"
+        },
+        {
+          "filterType": "Exclude",
+          "name": "eks-healthcheck",
+          "regexp": ".*kube-probe.*"
+        }
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+
+      ],
+      "sourceType": "LocalFile"
+    },
+
+
+     {
+      "name": "canon-common",
+      "category": "prod/eks/canon/common",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+       {
+          "filterType": "Exclude",
+          "name": "common",
+          "regexp": "(?s).*(nginx-access).*(?s)"
+        }
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+      ],
+      "sourceType": "LocalFile"
+    }
+  ]
+}
