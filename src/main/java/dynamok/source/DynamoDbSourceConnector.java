@@ -80,7 +80,7 @@ public class DynamoDbSourceConnector extends SourceConnector {
 
         //final AmazonDynamoDBClient client;
         final AmazonDynamoDB client;
-        final AmazonDynamoDBStreamsClient streamsClient;
+        final AmazonDynamoDBStreams streamsClient;
 
         if (config.accessKeyId.value().isEmpty() || config.secretKey.value().isEmpty()) {
             //client = new AmazonDynamoDBClient(DefaultAWSCredentialsProviderChain.getInstance());
