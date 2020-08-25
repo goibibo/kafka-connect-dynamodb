@@ -85,35 +85,19 @@ public class DynamoDbSourceConnector extends SourceConnector {
 
         if (config.accessKeyId.value().isEmpty() || config.secretKey.value().isEmpty()) {
             //client = new AmazonDynamoDBClient(DefaultAWSCredentialsProviderChain.getInstance());
-            client = AmazonDynamoDBClientBuilder
-                    .standard()
-                    .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-                    .withRegion(config.region)
-                    .build();
+            client = AmazonDynamoDBClientBuilder.standard().withCredentials(DefaultAWSCredentialsProviderChain.getInstance()).withRegion(config.region).build();
             
             //streamsClient = new AmazonDynamoDBStreamsClient(DefaultAWSCredentialsProviderChain.getInstance());
-            streamsClient = AmazonDynamoDBStreamsClientBuilder
-                            .standard()
-                            .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-                            .withRegion(config.region)
-                            .build();
+            streamsClient = AmazonDynamoDBStreamsClientBuilder.standard().withCredentials(DefaultAWSCredentialsProviderChain.getInstance()).withRegion(config.region).build();
             
             log.debug("AmazonDynamoDBStreamsClient created with DefaultAWSCredentialsProviderChain");
         } else {
               final BasicAWSCredentials awsCreds = new BasicAWSCredentials(config.accessKeyId.value(), config.secretKey.value())
 
             //client = new AmazonDynamoDBClient(awsCreds);
-            client = AmazonDynamoDBClientBuilder
-                    .standard()
-                    .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-                    .withRegion(config.region)
-                    .build();
+            client = AmazonDynamoDBClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCreds)).withRegion(config.region).build();
             //streamsClient = new AmazonDynamoDBStreamsClient(awsCreds);
-            streamsClient = AmazonDynamoDBStreamsClientBuilder
-                            .standard()
-                            .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-                            .withRegion(config.region)
-                            .build();                
+            streamsClient = AmazonDynamoDBStreamsClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCreds)).withRegion(config.region).build();                
             log.debug("AmazonDynamoDB clients created with AWS credentials from connector configuration");
         }
 
