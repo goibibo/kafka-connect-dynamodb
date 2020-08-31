@@ -54,7 +54,7 @@ public class DynamoDbSourceTask extends SourceTask {
 
     private TaskConfig config;
    // private AmazonDynamoDBStreamsClient streamsClient;
-    private AmazonDynamoDBStreams streamsClient;
+    private AmazonDynamoDBStreamsClient streamsClient;
 
     private List<String> assignedShards;
     private Map<String, String> shardIterators;
