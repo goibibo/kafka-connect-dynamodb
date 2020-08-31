@@ -64,7 +64,7 @@ public class DynamoDbSourceTask extends SourceTask {
 
         if (config.accessKeyId.isEmpty() || config.secretKey.isEmpty()) {
             //streamsClient = new AmazonDynamoDBStreamsClient(DefaultAWSCredentialsProviderChain.getInstance());
-            streamsClient = AmazonDynamoDBStreamsClientBuilder.standard().withCredentials(DefaultAWSCredentialsProviderChain.getInstance().withRegion(config.region).build();
+            streamsClient = AmazonDynamoDBStreamsClientBuilder.standard().withCredentials(DefaultAWSCredentialsProviderChain.getInstance()).withRegion(config.region).build();
             log.debug("AmazonDynamoDBStreamsClient created with DefaultAWSCredentialsProviderChain");
         } else {
             final BasicAWSCredentials awsCreds = new BasicAWSCredentials(config.accessKeyId, config.secretKey);
