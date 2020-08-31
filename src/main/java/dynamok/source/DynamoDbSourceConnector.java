@@ -17,8 +17,6 @@
 package dynamok.source;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBStreamsClientBuilder;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBStreamsClient;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
