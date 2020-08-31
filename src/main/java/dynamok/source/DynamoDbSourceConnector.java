@@ -92,7 +92,7 @@ public class DynamoDbSourceConnector extends SourceConnector {
             
             log.debug("AmazonDynamoDBStreamsClient created with DefaultAWSCredentialsProviderChain");
         } else {
-              final BasicAWSCredentials awsCreds = new BasicAWSCredentials(config.accessKeyId.value(), config.secretKey.value())
+              final BasicAWSCredentials awsCreds = new BasicAWSCredentials(config.accessKeyId.value(), config.secretKey.value());
 
             //client = new AmazonDynamoDBClient(awsCreds);
             client = AmazonDynamoDBClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCreds)).withRegion(config.region).build();
